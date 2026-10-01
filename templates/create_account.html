@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create an Account | Tehilim Together</title>
+
+    <link rel="stylesheet" href="static/create_account.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a href="/" class="back-link">Back to Login</a>
+
+        <header class="page-header">
+
+            <h1>Tehilim Together</h1>
+
+            <p class="subtitle">
+                Create an account to keep track of your Tehilim groups.
+            </p>
+
+        </header>
+
+        <main class="register-card">
+
+            <h2>Create an Account</h2>
+
+            <form action="/create_account.html" method="POST">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Re-enter your password"
+                        required
+                    >
+
+                </div>
+
+                <button type="submit" class="register-button">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="login.html">Log in</a>
+            </p>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(224, 184, 82, 0.2),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(91, 145, 190, 0.2),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #071d35 0%,
+            #0d3155 50%,
+            #174b73 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    width: 100%;
+    max-width: 680px;
+
+    margin: auto;
+}
+
+/* BACK LINK */
+
+.back-link {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+
+    color: #f0d17b;
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #ffffff;
+}
+
+/* HEADER */
+
+.page-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+/* MAIN TITLE */
+
+h1 {
+    margin: 0 0 18px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 48px;
+
+    font-weight: normal;
+
+    letter-spacing: 1px;
+
+    color: #f0d17b;
+
+    text-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* SUBTITLE */
+
+.subtitle {
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* FORM CARD */
+
+.form-card {
+    padding: 45px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.05)
+    );
+
+    border: 1px solid rgba(218, 181, 88, 0.35);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.3);
+
+    backdrop-filter: blur(15px);
+
+    position: relative;
+}
+
+/* GOLD TOP LINE */
+
+.form-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 4px;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        90deg,
+        #b8862c,
+        #f5d98b,
+        #b8862c
+    );
+
+    border-radius: 0 0 10px 10px;
+}
+
+/* FORM TITLE */
+
+h2 {
+    margin: 0 0 30px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 30px;
+
+    font-weight: normal;
+
+    text-align: center;
+
+    color: #f4d98d;
+}
+
+/* FORM GROUPS */
+
+.form-group {
+    margin-bottom: 28px;
+}
+
+/* LABELS */
+
+label {
+    display: block;
+
+    margin-bottom: 11px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #f4d98d;
+}
+
+.optional {
+    font-size: 12px;
+
+    font-weight: normal;
+
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* INPUTS AND DROPDOWN */
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 16px 18px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    font-size: 15px;
+
+    color: #ffffff;
+
+    background: rgba(4, 20, 45, 0.75);
+
+    border: 1px solid rgba(218, 181, 88, 0.35);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+/* INPUT PLACEHOLDERS */
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* DROPDOWN OPTIONS */
+
+select option {
+    background: #0d3155;
+
+    color: #ffffff;
+}
+
+/* FOCUS EFFECT */
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #f0d17b;
+
+    box-shadow:
+        0 0 0 3px rgba(240, 209, 123, 0.12);
+}
+
+/* TEXTAREA */
+
+textarea {
+    resize: vertical;
+
+    min-height: 120px;
+}
+
+/* ADD RECIPIENT BUTTON */
+
+.add-button {
+    display: inline-block;
+
+    margin-top: 14px;
+
+    padding: 12px 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #f0d17b;
+
+    background: rgba(212, 170, 77, 0.08);
+
+    border: 1px solid rgba(218, 181, 88, 0.5);
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.add-button:hover {
+    background: rgba(212, 170, 77, 0.18);
+
+    border-color: #f0d17b;
+
+    transform: translateY(-2px);
+}
+
+/* CREATE GROUP BUTTON */
+
+.create-button {
+    width: 100%;
+
+    padding: 18px;
+
+    margin-top: 10px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    color: #132f49;
+
+    background: linear-gradient(
+        135deg,
+        #d4aa4d,
+        #f0d17b
+    );
+
+    border: 1px solid #f5dc94;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.22);
+
+    transition: all 0.25s ease;
+}
+
+.create-button:hover {
+    transform: translateY(-4px);
+
+    background: linear-gradient(
+        135deg,
+        #e3bd64,
+        #f7dc91
+    );
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* KEYBOARD FOCUS */
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #ffffff;
+
+    outline-offset: 5px;
+}
+
+/* BOTTOM TEXT */
+
+.bottom-text {
+    margin: 30px 0 0;
+
+    text-align: center;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 15px;
+
+    font-style: italic;
+
+    color: #f0d17b;
+}
+
+/* RECIPIENT LIST */
+
+#recipientList {
+    margin-top: 15px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .form-card {
+        padding: 35px 22px;
+
+        border-radius: 20px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 14px;
+    }
+
+    .create-button {
+        padding: 16px;
+    }
+}

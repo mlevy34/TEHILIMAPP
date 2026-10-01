@@ -1,0 +1,31 @@
+<main class="books-container">
+    <link rel="stylesheet" href="static/past_books.css">
+
+    {% for book in books %}
+
+        <div class="book-card">
+
+            <h2>{{ book[1] }}</h2>
+
+            <p>
+                Created: {{ book[2] }}
+            </p>
+
+            <button
+                type="button"
+                onclick="window.location.href='/group_info.html?book_id={{ book[0] }}'">
+                View Book
+            </button>
+            <form action="/delete_book" method="POST">
+    <input type="hidden" name="book_id" value="{{ book[0] }}">
+
+    <button type="submit">
+        Delete Book
+    </button>
+</form>
+
+        </div>
+
+    {% endfor %}
+
+</main>

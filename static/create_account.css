@@ -1,0 +1,263 @@
+{
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+min-height: 100vh;
+
+font-family: "Segoe UI", Arial, sans-serif;
+color: white;
+
+background:
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(240, 209, 123, 0.16),
+        transparent 28%
+    ),
+    radial-gradient(
+        circle at 85% 80%,
+        rgba(91, 145, 190, 0.18),
+        transparent 30%
+    ),
+    linear-gradient(
+        135deg,
+        #061a33 0%,
+        #0b2b50 50%,
+        #174d76 100%
+    );
+
+padding: 30px 20px;
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.container {
+width: 100%;
+max-width: 500px;
+}
+
+.back-link {
+display: inline-block;
+
+margin-bottom: 30px;
+
+color: #f0d17b;
+text-decoration: none;
+font-size: 14px;
+
+transition: color 0.2s ease;
+
+}
+
+.back-link {
+color: white;
+}
+
+.page-header {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.page-header h1 {
+margin: 0 0 10px;
+
+font-family: Georgia, "Times New Roman", serif;
+font-size: 42px;
+font-weight: normal;
+
+color: #f0d17b;
+
+}
+
+.subtitle {
+margin: 0;
+
+font-size: 14px;
+color: rgba(255, 255, 255, 0.7);
+
+}
+
+.register-card {
+position: relative;
+
+padding: 38px;
+
+background: rgba(255, 255, 255, 0.08);
+
+border: 1px solid rgba(218, 181, 88, 0.3);
+border-radius: 24px;
+
+box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+
+backdrop-filter: blur(14px);
+
+}
+
+.register-card::before {
+content: "";
+
+position: absolute;
+
+width: 90px;
+height: 4px;
+
+top: 0;
+left: 50%;
+
+transform: translateX(-50%);
+
+background: linear-gradient(
+    90deg,
+    #b8862c,
+    #f5d98b,
+    #b8862c
+);
+
+border-radius: 0 0 10px 10px;
+
+}
+
+.register-card h2 {
+margin: 0 0 28px;
+
+text-align: center;
+
+font-family: Georgia, "Times New Roman", serif;
+font-size: 30px;
+font-weight: normal;
+
+color: #f4d98d;
+
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+
+margin-bottom: 8px;
+
+font-size: 14px;
+color: rgba(255, 255, 255, 0.85);
+
+}
+
+.form-group input {
+width: 100%;
+
+padding: 13px 15px;
+
+border: 1px solid rgba(240, 209, 123, 0.3);
+border-radius: 10px;
+
+outline: none;
+
+font-family: "Segoe UI", Arial, sans-serif;
+font-size: 14px;
+
+color: white;
+
+background: rgba(3, 18, 38, 0.65);
+
+transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+.form-group input::placeholder {
+color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group input {
+border-color: #f0d17b;
+
+box-shadow: 0 0 0 3px rgba(240, 209, 123, 0.1);
+
+}
+
+.register-button {
+width: 100%;
+
+margin-top: 8px;
+padding: 14px;
+
+border: 1px solid #f5dc94;
+border-radius: 50px;
+
+font-family: "Segoe UI", Arial, sans-serif;
+font-size: 15px;
+font-weight: bold;
+
+color: #122d48;
+
+background: linear-gradient(
+    135deg,
+    #d4aa4d,
+    #f0d17b
+);
+
+cursor: pointer;
+
+transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+}
+
+.register-button {
+transform: translateY(-2px);
+
+background: linear-gradient(
+    135deg,
+    #e3bd64,
+    #f7dc91
+);
+
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+
+}
+
+.login-link {
+margin: 25px 0 0;
+
+text-align: center;
+
+font-size: 13px;
+
+color: rgba(255, 255, 255, 0.65);
+
+}
+
+.login-link a {
+color: #f0d17b;
+text-decoration: none;
+}
+
+.login-link a {
+color: white;
+text-decoration: underline;
+}
+
+@media (max-width: 550px) {
+
+body {
+    padding: 20px 15px;
+}
+
+.register-card {
+    padding: 30px 22px;
+}
+
+.page-header h1 {
+    font-size: 36px;
+}
+
+}

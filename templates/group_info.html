@@ -1,0 +1,67 @@
+<form action="/submit-progress" method="POST">
+
+    <link rel="stylesheet" href="static/group_info.css">
+
+    <input type="hidden" name="book_id" value="{{ book_id }}">
+
+    <a href="/home.html" class="back-link">
+        Back to Home
+    </a>
+
+    <div class="group-header">
+        <h1>Tehilim for {{ name }}</h1>
+        <p>{{ group_category }}</p>
+    </div>
+
+    <div class="share-section">
+
+        <p>Share this book with others:</p>
+
+        <input
+            type="text"
+            id="shareLink"
+            value="{{ url_for('join_book', book_code=book_code, _external=True) }}"
+            readonly
+        >
+
+        <button type="button" onclick="copyLink()">
+            Copy Link
+        </button>
+
+    </div>
+
+    <div class="tehilim-board">
+
+        {% for perek in perakim %}
+
+            <label class="perek-box">
+
+                <input
+                    type="checkbox"
+                    name="perakim"
+                    value="{{ perek.number }}"
+                    {% if perek.number in completed_perakim %}checked{% endif %}
+                >
+
+                <span>{{ perek.hebrew }}</span>
+
+            </label>
+
+        {% endfor %}
+
+    </div>
+
+    <button type="submit" class="submit-button">
+        Submit
+    </button>
+
+</form>
+<script>
+    function copyLink() {
+        const link = document.getElementById("shareLink");
+
+        navigator.clipboard.writeText(link.value);
+
+        alert("Link copied!");
+    }
+</script>

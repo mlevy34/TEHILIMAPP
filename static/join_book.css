@@ -1,0 +1,204 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(240, 209, 123, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(91, 145, 190, 0.16),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #041426 0%,
+            #092847 48%,
+            #123f63 100%
+        );
+}
+
+
+/* CARD */
+
+.card {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+
+    padding: 45px 40px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.10),
+            rgba(255, 255, 255, 0.045)
+        );
+
+    border: 1px solid rgba(240, 209, 123, 0.25);
+    border-radius: 26px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(18px);
+}
+
+
+/* GOLD ACCENT */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 105px;
+    height: 4px;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        90deg,
+        #a97a25,
+        #f7dc91,
+        #a97a25
+    );
+
+    border-radius: 0 0 12px 12px;
+}
+
+
+/* TITLE */
+
+.card h1 {
+    margin: 0 0 28px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+
+    color: #f0d17b;
+
+    text-shadow:
+        0 3px 18px rgba(240, 209, 123, 0.12);
+}
+
+
+/* DESCRIPTION */
+
+.card p {
+    margin: 0 0 8px;
+
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+
+/* BOOK NAME */
+
+.card h2 {
+    margin: 0 0 34px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: normal;
+
+    color: white;
+}
+
+
+/* JOIN BUTTON */
+
+.card button {
+    width: 100%;
+
+    padding: 15px 20px;
+
+    border: 1px solid #f5dc94;
+    border-radius: 50px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    color: #102b45;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c99c3e,
+            #f0d17b,
+            #e0bd65
+        );
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.card button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.30);
+}
+
+.card button:active {
+    transform: translateY(0);
+}
+
+
+/* PHONE */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 20px 14px;
+    }
+
+    .card {
+        padding: 35px 24px;
+        border-radius: 22px;
+    }
+
+    .card h1 {
+        font-size: 32px;
+    }
+
+    .card h2 {
+        font-size: 24px;
+    }
+}

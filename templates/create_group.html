@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create a Group | Tehilim Together</title>
+
+    <link rel="stylesheet" href="static/create_group.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a href="home.html" class="back-link">Back to Home</a>
+
+        <header class="page-header">
+
+            <h1>Create Your Group</h1>
+
+            <p class="subtitle">
+                Create a group and invite family and friends
+                to read Tehilim together.
+            </p>
+
+        </header>
+
+        <main class="form-card">
+
+            <h2>Start a New Group</h2>
+
+            <form action="/create_group.html" method="POST">
+
+                <!-- GROUP NAME DROPDOWN -->
+
+                <div class="form-group">
+
+                    <label for="group_name">Group Category:</label>
+
+                    <select id="group_name" name="group_name" required>
+
+                        <option value="" disabled selected>
+                            Select a group category
+                        </option>
+
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Community">Community</option>
+                        <option value="Custom">Custom Group</option>
+
+                    </select>
+
+                </div>
+
+                <!-- CUSTOM GROUP NAME -->
+
+                <div class="form-group">
+
+                    <label for="custom_name">
+                        Tehilim Name:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="custom_name"
+                        name="custom_name"
+                        placeholder="Enter the name you are praying for"
+                    >
+
+                </div>
+
+                <!-- RECIPIENTS -->
+
+
+                <!-- CREATE GROUP -->
+
+                <button type="submit" class="create-button">
+                    New Book
+                </button>
+
+            </form>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

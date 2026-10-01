@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Join Book | Tehilim Together</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='join_book.css') }}">
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>Join Tehilim Book</h1>
+
+        <p>
+            You are joining:
+        </p>
+
+        <h2>{{ book_name }}</h2>
+
+        <form method="POST">
+
+            <button type="submit">
+                Join Book
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
