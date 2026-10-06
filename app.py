@@ -1,17 +1,16 @@
 import os
 
-import pyodbc
+from mssql_python import connect
 from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 
 
 def get_db_connection():
-    connection = pyodbc.connect(
-        "DRIVER={ODBC Driver 17 for SQL Server};"
-        "SERVER=localhost\\MSSQLSERVER01;"
-        "DATABASE=Tehilim Together;"
-        "Trusted_Connection=yes;"
-    )
+    connection = connect(
+    "Server=localhost\\MSSQLSERVER01;"
+    "Database=Tehilim Together;"
+    "Trusted_Connection=yes;"
+)
 
     return connection
 
