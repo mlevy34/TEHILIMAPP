@@ -1,5 +1,4 @@
 import os
-
 from mssql_python import connect
 from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
@@ -7,10 +6,10 @@ import secrets
 
 def get_db_connection():
     connection = connect(
-    "Server=localhost\\MSSQLSERVER01;"
-    "Database=Tehilim Together;"
-    "Trusted_Connection=yes;"
-)
+        "Server=localhost\\MSSQLSERVER01;"
+        "Database=Tehilim Together;"
+        "Trusted_Connection=yes;"
+    )
 
     return connection
 
@@ -75,6 +74,7 @@ def create_app(test_config=None):
             )
 
         return render_template("create_group.html")
+
     @app.route('/join/<book_code>', methods=['GET', 'POST'])
     def join_book(book_code):
 
@@ -349,15 +349,6 @@ def create_app(test_config=None):
             """
             DELETE
             FROM BOOK_USER
-            WHERE BOOK_ID = ?
-            """,
-            (book_id,)
-        )
-
-        cursor.execute(
-            """
-            DELETE
-            FROM BOOK_INVITE
             WHERE BOOK_ID = ?
             """,
             (book_id,)
