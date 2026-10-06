@@ -9,6 +9,7 @@ def get_db_connection():
         "Server=localhost\\MSSQLSERVER01;"
         "Database=Tehilim Together;"
         "Trusted_Connection=yes;"
+        "TrustServerCertificate=yes;"
     )
 
     return connection
@@ -239,8 +240,8 @@ def create_app(test_config=None):
     @app.route('/', methods=['GET', 'POST'])
     def login():
 
-        if 'user_id' in session:
-            return redirect(url_for('hello'))
+        #if 'user_id' in session:
+            #return redirect(url_for('hello'))
 
         if request.method == 'POST':
             phone = request.form.get('phone')
