@@ -1,9 +1,8 @@
-import pyodbc
+from mssql_python import connect
 
-connection = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=localhost\\MSSQLSERVER01;"
-    "DATABASE=Tehilim Together;"
+connection = connect(
+    "Server=localhost\\MSSQLSERVER01;"
+    "Database=Tehilim Together;"
     "Trusted_Connection=yes;"
 )
 
