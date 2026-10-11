@@ -1,18 +1,22 @@
 import os
-from mssql_python import connect
+import pymysql
 from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 
 
 def get_db_connection():
-    connection = connect(
-        "Server=localhost\\MSSQLSERVER01;"
-        "Database=Tehilim Together;"
-        "Trusted_Connection=yes;"
-        "TrustServerCertificate=yes;"
+    return pymysql.connect(
+        host=os.environ.get(
+            "MYSQL_HOST",
+            "gateway01.us-east-1.prod.aws.tidbcloud.com"
+        ),
+        port=int(os.environ.get("MYSQL_PORT", "4000")),
+        user=os.environ["MYSQL_USER"],
+        password=os.environ["MYSQL_PASSWORD"],
+        database=os.environ.get("MYSQL_DATABASE", "Tehilim Together"),
+        ssl_verify_cert=True,
+        ssl_verify_identity=True,
     )
-
-    return connection
 
 
 def create_app(test_config=None):
@@ -50,20 +54,15 @@ def create_app(test_config=None):
 
             cursor.execute(
                 """
-                INSERT INTO dbo.BOOK
-                    (BOOK_DATE_CREATED, BOOK_NAME, USER_ID, GROUP_CATEGORY, BOOK_CODE)
-                    OUTPUT INSERTED.BOOK_ID
-                VALUES (GETDATE(), ?, ?, ?, ?)
+                INSERT INTO `BOOK`
+                (`BOOK_DATE_CREATED`, `BOOK_NAME`, `USER_ID`,
+                 `GROUP_CATEGORY`, `BOOK_CODE`)
+                VALUES (CURRENT_DATE(), %s, %s, %s, %s)
                 """,
-                (
-                    name,
-                    session['user_id'],
-                    group_category,
-                    book_code
-                )
+                (name, session["user_id"], group_category, book_code)
             )
 
-            book_id = cursor.fetchone()[0]
+            book_id = cursor.lastrowid
 
             connection.commit()
             connection.close()
@@ -86,8 +85,8 @@ def create_app(test_config=None):
         cursor.execute(
             """
             SELECT BOOK_ID, BOOK_NAME
-            FROM dbo.BOOK
-            WHERE BOOK_CODE = ?
+            FROM `BOOK`
+            WHERE BOOK_CODE = %s
             """,
             (book_code,)
         )
@@ -104,20 +103,14 @@ def create_app(test_config=None):
         if request.method == 'POST':
             cursor.execute(
                 """
-                IF NOT EXISTS (
-                    SELECT 1
-                    FROM BOOK_USER
-                    WHERE BOOK_ID = ? AND USER_ID = ?
+                INSERT
+                IGNORE INTO `BOOK_USER` (`BOOK_ID`, `USER_ID`)
+                VALUES (
+                %s,
+                %s
                 )
-                INSERT INTO BOOK_USER (BOOK_ID, USER_ID)
-                VALUES (?, ?)
                 """,
-                (
-                    book_id,
-                    session['user_id'],
-                    book_id,
-                    session['user_id']
-                )
+                (book_id, session["user_id"])
             )
 
             connection.commit()
@@ -172,8 +165,8 @@ def create_app(test_config=None):
         cursor.execute(
             """
             SELECT BOOK_NAME, GROUP_CATEGORY, BOOK_CODE
-            FROM dbo.BOOK
-            WHERE BOOK_ID = ?
+            FROM `BOOK`
+            WHERE BOOK_ID = %s
             """,
             (book_id,)
         )
@@ -187,8 +180,8 @@ def create_app(test_config=None):
         cursor.execute(
             """
             SELECT PERAK_ID
-            FROM BOOK_PERAK
-            WHERE BOOK_ID = ?
+            FROM `BOOK_PERAK`
+            WHERE BOOK_ID = %s
             """,
             (book_id,)
         )
@@ -219,15 +212,14 @@ def create_app(test_config=None):
         for perek in perakim:
             cursor.execute(
                 """
-                IF NOT EXISTS (
-                    SELECT 1
-                    FROM BOOK_PERAK
-                    WHERE BOOK_ID = ? AND PERAK_ID = ?
+                INSERT
+                IGNORE INTO `BOOK_PERAK` (`BOOK_ID`, `PERAK_ID`)
+                VALUES (
+                %s,
+                %s
                 )
-                INSERT INTO BOOK_PERAK (BOOK_ID, PERAK_ID)
-                VALUES (?, ?)
                 """,
-                (book_id, perek, book_id, perek)
+                (book_id, perek)
             )
 
         connection.commit()
@@ -253,8 +245,9 @@ def create_app(test_config=None):
             cursor.execute(
                 """
                 SELECT USER_ID
-                FROM dbo.[USER]
-                WHERE USER_PHONE = ? AND USER_PASS = ?
+                FROM `USER`
+                WHERE USER_PHONE = %s
+                  AND USER_PASS = %s
                 """,
                 (phone, password)
             )
@@ -293,8 +286,8 @@ def create_app(test_config=None):
 
             cursor.execute(
                 """
-                INSERT INTO dbo.[USER] (USER_NAME, USER_PHONE, USER_PASS)
-                VALUES (?, ?, ?)
+                INSERT INTO `USER` (`USER_NAME`, `USER_PHONE`, `USER_PASS`)
+                VALUES (%s, %s, %s)
                 """,
                 (name, phone, password)
             )
@@ -315,10 +308,10 @@ def create_app(test_config=None):
         cursor.execute(
             """
             SELECT BOOK_ID, BOOK_NAME, BOOK_DATE_CREATED, BOOK_DATE_COMPLETED
-            FROM dbo.BOOK
-            WHERE USER_ID = ?
+            FROM `BOOK`
+            WHERE USER_ID = %s
             """,
-            (session['user_id'],)
+            (session["user_id"],)
         )
 
         books = cursor.fetchall()
@@ -336,31 +329,23 @@ def create_app(test_config=None):
         cursor = connection.cursor()
 
         cursor.execute(
-            """
-            DELETE
-            FROM BOOK_PERAK
-            WHERE BOOK_ID = ?
-            """,
+            "DELETE FROM `BOOK_PERAK` WHERE BOOK_ID = %s",
+            (book_id,)
+        )
+
+        cursor.execute(
+            "DELETE FROM `BOOK_USER` WHERE BOOK_ID = %s",
             (book_id,)
         )
 
         cursor.execute(
             """
             DELETE
-            FROM BOOK_USER
-            WHERE BOOK_ID = ?
+            FROM `BOOK`
+            WHERE BOOK_ID = %s
+              AND USER_ID = %s
             """,
-            (book_id,)
-        )
-
-        cursor.execute(
-            """
-            DELETE
-            FROM BOOK
-            WHERE BOOK_ID = ?
-              AND USER_ID = ?
-            """,
-            (book_id, session['user_id'])
+            (book_id, session["user_id"])
         )
 
         connection.commit()
